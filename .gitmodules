@@ -1,0 +1,6 @@
+[submodule "components/NapkinGIS-QGIS-plugin"]
+	path = components/NapkinGIS-QGIS-plugin
+	url = https://github.com/NapkinGIS/NapkinGIS-QGIS-plugin
+[submodule "components/NapkinGIS-web"]
+	path = components/NapkinGIS-web
+	url = https://github.com/NapkinGIS/NapkinGIS-web
