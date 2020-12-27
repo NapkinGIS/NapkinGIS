@@ -1,6 +1,6 @@
 DEBUG = False
 
-ADMINS = [('admin', 'admin@gisquick.org')]
+ADMINS = [('admin', 'contact@napkingis.no')]
 GISQUICK_PROJECT_ROOT = '/publish/'
 GISQUICK_MAPSERVER_URL = 'http://qgisserver:90/cgi-bin/qgis_mapserv.fcgi'
 
