@@ -1,4 +1,4 @@
-# Generated with: gisquick-cli compose --profile=letsencrypt --server-name=web.napkingis.no
+# Generated with: gisquick-cli compose --accounts --profile=letsencrypt --server-name=web.napkingis.no
 
 version: "2.3"
 
@@ -38,7 +38,6 @@ services:
       - DJANGO_LANGUAGE_CODE=en-us
       - DJANGO_SECRET_KEY=${SECRET_KEY}
       - GISQUICK_SQLITE_DB=/var/www/gisquick/data/gisquick.sqlite3
-      - GISQUICK_ACCOUNTS_ENABLED=False
     env_file:
       - django.env
     expose:
@@ -88,6 +87,12 @@ services:
     volumes:
       - assets:/assets/
     command: "copy-assets /var/www /assets/user"
+
+  web-accounts:
+    image: gisquick/web-accounts
+    volumes:
+      - assets:/assets/
+    command: "copy-assets /var/www /assets/accounts"
 
 volumes:
   publish:
