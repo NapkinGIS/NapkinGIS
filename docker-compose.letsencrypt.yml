@@ -1,5 +1,3 @@
-# Generated with: gisquick-cli compose --accounts --profile=letsencrypt --server-name=web.napkingis.no
-
 version: "2.3"
 
 x-logging: &default-logging
@@ -12,7 +10,7 @@ services:
 
   qgisserver:
     restart: always
-    image: gisquick/qgis-server:3.4
+    image: napkingis/qgis-server:3.4
     volumes:
       - publish:/publish/
     expose:
@@ -20,13 +18,13 @@ services:
 
   django:
     restart: always
-    image: gisquick/django
+    image: napkingis/django
     volumes:
-      - db-data:/var/www/gisquick/data/
+      - db-data:/var/www/napkingis/data/
       - publish:/publish/
       - assets:/assets/
-      - media:/var/www/gisquick/media/
-      - ./django/settings.custom/:/var/www/gisquick/djproject/custom/:ro
+      - media:/var/www/napkingis/media/
+      - ./django/settings.custom/:/var/www/napkingis/djproject/custom/:ro
     environment:
       - GUNICORN_WORKERS=2
       - GUNICORN_ERRORLOG=-
@@ -34,10 +32,10 @@ services:
       - DJANGO_STATIC_URL=/django/static/
       - DJANGO_STATIC_ROOT=/assets/django/static/
       - DJANGO_MEDIA_URL=/media/
-      - DJANGO_MEDIA_ROOT=/var/www/gisquick/media/
+      - DJANGO_MEDIA_ROOT=/var/www/napkingis/media/
       - DJANGO_LANGUAGE_CODE=en-us
       - DJANGO_SECRET_KEY=${SECRET_KEY}
-      - GISQUICK_SQLITE_DB=/var/www/gisquick/data/gisquick.sqlite3
+      - GISQUICK_SQLITE_DB=/var/www/napkingis/data/gisquick.sqlite3
     env_file:
       - django.env
     expose:
@@ -46,7 +44,7 @@ services:
 
   go:
     restart: always
-    image: gisquick/settings
+    image: napkingis/settings
     volumes:
       - publish:/publish/
       - media:/var/www/media/
@@ -77,19 +75,19 @@ services:
     logging: *default-logging
 
   web-map:
-    image: gisquick/web-map
+    image: napkingis/web-map
     volumes:
       - assets:/assets/
     command: "copy-assets /var/www /assets/map"
 
   web-user:
-    image: gisquick/web-user
+    image: napkingis/web-user
     volumes:
       - assets:/assets/
     command: "copy-assets /var/www /assets/user"
 
   web-accounts:
-    image: gisquick/web-accounts
+    image: napkingis/web-accounts
     volumes:
       - assets:/assets/
     command: "copy-assets /var/www /assets/accounts"
