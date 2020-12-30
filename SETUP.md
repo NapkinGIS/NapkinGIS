@@ -21,7 +21,7 @@ Create Let's Encrypt certificate
 docker-compose -f certbot.yml run --rm certbot certonly --agree-tos -a webroot \
     --webroot-path /var/www/certbot/ \
     --email contact@napkingis.no \
-    -d example.com
+    -d web.napkingis.no
 ```
 
 Switch to normal configuration and restart nginx server
