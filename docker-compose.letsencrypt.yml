@@ -70,8 +70,8 @@ services:
       - ./nginx/conf.letsencrypt/:/etc/nginx/conf.d/
       - ./nginx/error/:/var/www/error/
     ports:
-      - 80:80
-      - 443:443
+      #- 4000:80
+      - 4000:443
     logging: *default-logging
 
   web-map:
