@@ -1,14 +1,14 @@
-## Server deployment with Let's Encrypt certificate
+## Server deployment
 
-Set of commands to simplify the setup of new deployments.
+Commands to simplify the setup of new deployments.
 
 
 Before first start, adjust the [configuration](#startup-configuration)
 
-Temporary switch to configuration with http protocol only
+Set up NGINX configuration
 ```
-rm nginx/conf.letsencrypt/default.conf
-ln -s conf.http nginx/conf.letsencrypt/default.conf
+rm nginx/conf.local/default.conf
+ln -s conf.http nginx/conf.local/default.conf
 ```
 
 Start NapkinGIS
@@ -16,30 +16,8 @@ Start NapkinGIS
 docker-compose up -d
 ```
 
-Create Let's Encrypt certificate
-```
-docker-compose -f certbot.yml run --rm certbot certonly --agree-tos -a webroot \
-    --webroot-path /var/www/certbot/ \
-    --email contact@napkingis.no \
-    -d web.napkingis.no
-```
-
-Switch to normal configuration and restart nginx server
-```
-rm nginx/conf.letsencrypt/default.conf
-ln -s conf.letsencrypt nginx/conf.letsencrypt/default.conf
-docker-compose restart nginx
-```
-
-NapkinGIS should now be working over https. Before starting to use NapkinGIS, you will have to [initialize the DB](#db-initialization).
-
-Renew certificate before it will expire:
-```
-docker-compose -f certbot.yml run --rm certbot renew
-docker-compose kill -s HUP nginx
-```
-
-Tip: use `--dry-run` option in certbot commands for testing
+NapkinGIS should now be working over https.
+Before starting to use NapkinGIS, you will have to [initialize the DB](#db-initialization).
 
 
 ## Startup configuration

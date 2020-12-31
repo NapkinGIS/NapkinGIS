@@ -5,5 +5,4 @@ server {
     server_name web.napkingis.no;
 
     include /etc/nginx/conf.d/locations;
-    include /etc/nginx/conf.d/locations.certbot;
 }

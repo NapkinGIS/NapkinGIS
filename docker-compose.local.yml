@@ -65,13 +65,10 @@ services:
     volumes:
       - assets:/var/www/html/
       - media:/var/www/media/
-      - certbot:/var/www/certbot/
-      - letsencrypt:/etc/letsencrypt/
-      - ./nginx/conf.letsencrypt/:/etc/nginx/conf.d/
+      - ./nginx/conf.local/:/etc/nginx/conf.d/
       - ./nginx/error/:/var/www/error/
     ports:
-      #- 4000:80
-      - 4000:443
+      - 4000:80
     logging: *default-logging
 
   web-map:
@@ -102,5 +99,3 @@ volumes:
   db-data:
   assets:
   media:
-  certbot:
-  letsencrypt:
