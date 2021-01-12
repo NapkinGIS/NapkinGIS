@@ -1,5 +1,5 @@
 server {
-    client_max_body_size 10M;
+    client_max_body_size 250M;
 
     listen 80 default_server;
     server_name example.com;

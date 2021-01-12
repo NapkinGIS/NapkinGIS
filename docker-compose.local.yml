@@ -53,8 +53,8 @@ services:
       - MAP_CACHE_ROOT=/var/www/media/cache
       - SERVER_URL=http://django:8000
       - MAPSERVER_URL=http://qgisserver:90/cgi-bin/qgis_mapserv.fcgi
-      - MAX_FILE_UPLOAD=50M
-      - MAX_PROJECT_SIZE=150M
+      - MAX_FILE_UPLOAD=250M
+      - MAX_PROJECT_SIZE=250M
     expose:
       - 8001
     logging: *default-logging
